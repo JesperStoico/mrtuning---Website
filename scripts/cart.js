@@ -17,7 +17,7 @@ function renderCart() {
     cartTable.innerHTML = '';  // Clear the table
     let total = 0;
 
-    console.log(cart_local);
+    console.log('Render cart', cart_local);
     
     cart_local.forEach((item, index) => {
         // Create row for each cart item
@@ -45,18 +45,38 @@ function renderCart() {
 
 // Clear the cart
 function clearCart() {
-    cart_local = [];
+    // Clear local storage or session storage for the cart
     localStorage.removeItem('cart-mrtuning');
-    clearCartIcon();
-    renderCart();
+
+    // Attempt to clear cart display in the DOM
+    const cartTable = document.getElementById('cart-table');
+    const cartTotal = document.getElementById('cart-total');
+
+    if (cartTable) {
+        cartTable.innerHTML = ''; // Clear the cart table if it exists
+    } else {
+        console.error("Cart table element not found!");
+    }
+
+    if (cartTotal) {
+        cartTotal.innerHTML = ''; // Clear the cart total if it exists
+    } else {
+        console.error("Cart total element not found!");
+    }
+
+    // Optionally reset the cart counter
+    const cartCounter = document.getElementById('cart-counter');
+    if (cartCounter) {
+        cartCounter.textContent = 0; // Set cart counter to 0 if it exists
+    }
 }
 
 // Function to remove an item from the cart
 function removeFromCart(index) {
     cart_local.splice(index, 1); // Remove item from the array
     localStorage.setItem('cart-mrtuning', JSON.stringify(cart_local)); // Update local storage
-    updateCart(); // Update the cart display
-    renderCart(); // Re-render the cart
+    renderCart();
+    updateCart();
 }
 
 // Add event listener for remove buttons
@@ -66,7 +86,6 @@ document.addEventListener('click', (event) => {
         removeFromCart(index);
     }
 });
-
 
 // Attach clear cart button functionality
 document.addEventListener('DOMContentLoaded', () => {

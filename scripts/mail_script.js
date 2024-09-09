@@ -1,26 +1,32 @@
-document.getElementById('booking-form').addEventListener('submit', () => {
-    const cartData = JSON.stringify(cart_local);
-    document.getElementById('cart-data').value = cartData;
-});
-
 document.getElementById('booking-form').addEventListener('submit', function (e) {
-    e.preventDefault(); // Prevent the default form submission
+    e.preventDefault(); // Prevent form submission
+
+    // Manually set the cart data from localStorage or the relevant cart variable
+    const cartData = JSON.stringify(cart); // Assuming cart_local holds the cart data
+    document.getElementById('cart-data').value = cartData;
 
     // Create a FormData object to send the form data via AJAX
     const formData = new FormData(this);
 
     // Send the form data to the server using fetch
-    fetch('send_booking.php', {
+    fetch('scripts/send_booking.php', {
         method: 'POST',
         body: formData
     })
-    .then(response => response.text()) // Get the server response as text
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.text(); // Convert the response to text
+    })
     .then(data => {
-        // Display the server's response inside the form-message div
         document.getElementById('form-message').innerHTML = data;
+        if (data.includes("Mange tak for din bestilling!")) {
+            clearCart(); // Clear the cart if the order is successful
+        }
     })
     .catch(error => {
-        // Handle any errors during the AJAX request
+        console.error("Error occurred:", error); // Log the error for debugging
         document.getElementById('form-message').innerHTML = "Beklager, noget gik galt. Prøv igen.";
     });
 });

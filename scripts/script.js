@@ -1,44 +1,52 @@
-// Fetch and load the menu
-document.getElementById('menu-container').innerHTML = fetch('header.html')
-    .then(response => response.text())
-    .then(data => {
-        document.getElementById('menu-container').innerHTML = data;
+document.addEventListener('DOMContentLoaded', () => {
+    // Fetch and load the menu
+    document.getElementById('menu-container').innerHTML = fetch('header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('menu-container').innerHTML = data;
 
-        // Now that the menu is loaded, add the event listener for the hamburger
-        const menu = document.querySelector('.menu');
-        const hamburger = document.querySelector('.hamburger');
+            // Add the event listener for the hamburger
+            const menu = document.querySelector('.menu');
+            const hamburger = document.querySelector('.hamburger');
 
-        if (menu && hamburger) {
-            hamburger.addEventListener('click', () => {
-                menu.classList.toggle('show');
-            });
-        } else {
-            console.error('Menu or hamburger element not found.');
+            if (menu && hamburger) {
+                hamburger.addEventListener('click', () => {
+                    menu.classList.toggle('show');
+                });
+            } else {
+                console.error('Menu or hamburger element not found.');
+            }
+
+            // Update cart count display
+            updateCart();
+        })
+        .catch(error => console.error('Error loading the menu:', error));
+
+    // Use event delegation to handle clicks for dynamically added buttons
+    document.addEventListener('click', (event) => {
+        if (event.target && event.target.classList.contains('add-to-cart-button')) {
+            const button = event.target;
+            const name = button.getAttribute('data-name');
+            const price = parseFloat(button.getAttribute('data-price'));
+            let withTuning = button.getAttribute('with-tuning');
+
+            if (name && !isNaN(price)) {
+                if (withTuning === 'false') {
+                    withTuning = false;
+                }
+                addToCart(name, price, withTuning);
+            } else {
+                console.error('Add to Cart button attributes are missing or incorrect.');
+            }
         }
+    });
 
-        // Add event listeners to 'Add to Cart' buttons after the menu loads
-        document.querySelectorAll('.add-to-cart-button').forEach(button => {
-            button.addEventListener('click', () => {
-                const name = button.getAttribute('data-name');
-                const price = parseFloat(button.getAttribute('data-price'));
-                addToCart(name, price);
-            });
-        });
-
-        // Update cart count display (in case menu contains cart-count)
-        updateCart();
-    })
-    .catch(error => console.error('Error loading the menu:', error));
-
-// Function to toggle the hidden row
-function toggleInfo(rowId) {
-    const infoRow = document.getElementById(rowId);
-    if (infoRow.style.display === "table-row") {
-        infoRow.style.display = "none";
-    } else {
-        infoRow.style.display = "table-row";
+    // Attach clear cart button functionality
+    const clearCartButton = document.getElementById('clear-cart-button');
+    if (clearCartButton) {
+        clearCartButton.addEventListener('click', clearCart);
     }
-}
+});
 
 // Cart functions
 let cart = [];
@@ -49,6 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (storedCart) {
         cart = storedCart;
         updateCart();
+        renderCart();
     }
 });
 
@@ -61,44 +70,103 @@ function addToCart(name, price, withTuning) {
         cart.push({ name, price, withTuning, quantity: 1 });
     }
     updateCart();
+    renderCart();
 }
 
 // Function to update the cart display and count in the menu
 function updateCart() {
     const cartCount = document.getElementById('cart-count');
 
-    // Only proceed if cartCount exists in the DOM
     if (cartCount) {
         let totalItems = 0;
 
-        // Calculate total number of items
         cart.forEach(item => {
             totalItems += item.quantity;
         });
 
-        // Update the cart count in the menu
         cartCount.textContent = totalItems;
     } else {
         console.warn('Cart count element not found.');
     }
 
-    // Save the cart to localStorage
     localStorage.setItem('cart-mrtuning', JSON.stringify(cart));
 }
 
-function clearCartIcon() {
-    let cartCount = document.getElementById('cart-count');
-    cartCount.textContent = 0;
+// Function to render the cart items
+function renderCart() {
+    const cartTable = document.getElementById('cart-table');
+    const cartTotal = document.getElementById('cart-total');
+
+    if (cartTable) {
+        cartTable.innerHTML = '';  // Clear the table
+        let total = 0;
+
+        console.log('Render cart', cart);
+        cart.forEach((item, index) => {
+            // Create row for each cart item
+            const row = document.createElement('tr');
+            let extraInfo = "";
+            console.log(item)
+            if (item.withTuning === false) {
+                extraInfo = " (uden tuning.)";
+            }
+            row.innerHTML = `
+                <td>${item.name}${extraInfo}</td>
+                <td>${item.price.toFixed(2)} kr.</td>
+                <td>${item.quantity}</td>
+                <td>${(item.price * item.quantity).toFixed(2)} kr.</td>
+                <td><button class="remove-button" data-index="${index}">Fjern</button></td>
+            `;
+            cartTable.appendChild(row);
+    
+            // Update total price
+            total += item.price * item.quantity;
+        })
+        if (cartTotal) {
+            // Display total price
+            cartTotal.textContent = `Total: ${total.toFixed(2)} kr.`;
+        };    
+    };
+};
+
+// Clear the cart
+function clearCart() {
+    localStorage.removeItem('cart-mrtuning');
+    cart = []; // Clear the cart variable
+
+    const cartTable = document.getElementById('cart-table');
+    const cartTotal = document.getElementById('cart-total');
+
+    if (cartTable) {
+        cartTable.innerHTML = ''; // Clear the cart table if it exists
+    } else {
+        console.error("Cart table element not found!");
+    }
+
+    if (cartTotal) {
+        cartTotal.innerHTML = ''; // Clear the cart total if it exists
+    } else {
+        console.error("Cart total element not found!");
+    }
+
+    const cartCounter = document.getElementById('cart-count');
+    if (cartCounter) {
+        cartCounter.textContent = 0; // Set cart counter to 0 if it exists
+    }
 }
 
-// Add event listeners to the dynamically generated 'Book' buttons
-document.addEventListener('click', function(e) {
-    if (e.target && e.target.classList.contains('add-to-cart-button')) {
-        const name = e.target.getAttribute('data-name');
-        const price = parseFloat(e.target.getAttribute('data-price'));
-        let withTuning = e.target.getAttribute('with-tuning');
-        if (withTuning === 'true') { withTuning = true};
-        if (withTuning === 'false') { withTuning = false};
-        addToCart(name, price, withTuning);
+// Function to remove an item from the cart
+function removeFromCart(index) {
+    cart.splice(index, 1); // Remove item from the array
+    localStorage.setItem('cart-mrtuning', JSON.stringify(cart)); // Update local storage    
+    renderCart();
+    updateCart();
+}
+
+// Add event listener for remove buttons
+document.addEventListener('click', (event) => {
+    if (event.target && event.target.classList.contains('remove-button')) {
+        const index = event.target.getAttribute('data-index');
+        removeFromCart(index);
     }
 });
