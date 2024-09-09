@@ -1,0 +1,24 @@
+/* Container for the image grid */
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 equal columns */
+    gap: 20px; /* Space between the images */
+    margin-top: 20px;
+}
+
+/* Style for each image in the grid */
+.image-grid img {
+    width: 100%; /* Make the images fill their grid cells */
+    height: 250px; /* Set a fixed height to crop the images */
+    object-fit: cover; /* Crop the image, maintaining its aspect ratio */
+    border-radius: 8px; /* Optional: Add rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add shadow for effect */
+    transition: transform 0.4s ease, box-shadow 0.4s ease; /* Smooth transition */
+}
+
+/* Zoom-out effect on hover */
+.image-grid img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border: 1px solid red;
+}

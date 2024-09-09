@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="menu.css">
+    <title>MR Tuning</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js" defer></script>
+    <script src="mail_script.js" defer></script>
+</head>
+<body>
+    <div id="menu-container"></div>
+    <div class="container">
+        <h1>Kontakt os</h1>
+        <div class="section">
+            Skulle du have nogle spørgsmål omkring vores services eller bare gerne vil have fat i os. Så kan vi fanges på nedenstående medier.<br /><br />
+        </div>
+        <div class="logo-container"><center>
+            <img class="contact_logos" src="images/facebook_logo.png">
+            <a href="https://www.instagram.com/mrtuning.dk" target="_blank"><img class="contact_logos" src="images/instagram_logo.jpg"></a><br /><br />
+        </center>
+        </div>
+        <div class="section">
+            Eller er du til god gammeldags mail, kan du udfylde nedenfor. Og vi vil svare dig på mail.<br /><br />
+        </div>
+        <div id="form-message">
+            <form class="booking-form" id="booking-form" action="mail_contact.php" method="POST">
+                <div>
+                    <label for="name">Navn:</label>
+                    <input type="text" id="name" name="name" placeholder="Dit navn" required>
+                    
+                    <label for="mail">Email:</label>
+                    <input type="text" id="mail" name="mail" placeholder="Din Email" required>
+    
+                    <label for="phone">Telefonnummer:</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Dit telefonnummer" required>
+    
+                    <label for="comments">Hvad drejer henvendelsen sig om:</label>
+                    <textarea id="comments" name="comments" placeholder="Lad os høre hvad du har på hjertet"></textarea>
+    
+                    <button type="submit">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="menu.css">
+    <title>MR Tuning</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js" defer></script>
+    <script src="mail_script.js" defer></script>
+    <script src="prices.js" defer></script>
+</head>
+<body>
+    <div id="menu-container"></div>
+    <div class="container">
+        <h1>Book os til en tuning af din bil</h1>
+
+        <div id="form-message">
+            <form class="booking-form" id="booking-form" action="send_booking.php" method="POST">
+                <div>
+                    <label for="name">Navn:</label>
+                    <input type="text" id="name" name="name" placeholder="Dit navn" required>
+                    
+                    <label for="mail">Email:</label>
+                    <input type="text" id="mail" name="mail" placeholder="Din Email" required>
+    
+                    <label for="phone">Telefonnummer:</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Dit telefonnummer" required>
+    
+                    <label for="car">Bilmodel:</label>
+                    <input type="text" id="car" name="car" placeholder="Bilens mærke og model" required>
+    
+                    <label for="tuning">Ønsket tuning:</label>
+                    <select id="tuning" name="tuning" required>
+                        <option value="oeko">Øko Tuning (1.200.00 dkr)</option>
+                        <option value="stage1">Stage 1 (1.500.00 dkr)</option>
+                        <option value="stage2">Stage 2 (1.500.00 dkr)</option>
+                        <option value="stage2plus">Stage 2+ (1.500.00 dkr)</option>
+                        <option value="lamp">Slukning af kontrol lampe (500.00 dkr)</option>
+                    </select>
+    
+                    <label for="comments">Evt. extra kommentar til tuningen:</label>
+                    <textarea id="comments" name="comments" placeholder="Yderligere information"></textarea>
+    
+                    <button type="submit">Send</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

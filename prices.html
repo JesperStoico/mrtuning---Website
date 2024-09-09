@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="menu.css">
+        <title>MR Tuning</title>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="script.js" defer></script>
+        <script src="performance_chart.js" defer></script>
+    </head>
+    <body>
+        <div id="menu-container"></div>
+        <div class="container">
+            <div class="section">
+                <h2>Prisliste</h2>
+                <p>Kan du ikke finde det du ønsker på prislisten, så tag fat i os på telefon eller mail. Måske kan vi hjælpe med det også.</p>
+                <table class="price-table">
+                <tr>
+                    <td>Øko tuning</td>
+                    <td>1.495,00 kr.</td>
+                    <td><a href="book.html?tuning=oeko" class="book-button">Book</a></td>
+                    <td><button class="info-button" onclick="toggleInfo('info-oeko')">Mere info</button></td>
+                </tr>
+                <tr id="info-oeko" class="hidden-row">
+                    <td colspan="4">
+                        <div class="info-content">
+                            <p>Øko tuning fokuserer på brændstoføkonomi og optimering af motoreffektivitet for at reducere forbruget.</p>
+                        </div>
+                    </td>
+                </tr>    
+                <tr>
+                    <td>Stage 1</td>
+                    <td>1.495,00 kr.</td>
+                    <td><a href="book.html?tuning=stage1" class="book-button">Book</a></td>
+                    <td><button class="info-button" onclick="toggleInfo('stage1')">Mere info</button></td>
+                </tr>
+                <tr id="stage1" class="hidden-row">
+                    <td colspan="4">
+                        <div class="info-content">
+                            <p>TODO</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Stage 1+</td>
+                    <td>1.995,00 kr.</td>
+                    <td><a href="book.html?tuning=stage1plus" class="book-button">Book</a></td>
+                    <td><button class="info-button" onclick="toggleInfo('stage1plus')">Mere info</button></td>
+                </tr>
+                <tr id="stage1plus" class="hidden-row">
+                    <td colspan="4">
+                        <div class="info-content">
+                            <p>TODO</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Stage 2</td>
+                    <td>Kontakt os for tilbud</td>
+                    <td><a href="book.html?tuning=stage2" class="book-button">Book</a></td>
+                    <td><button class="info-button" onclick="toggleInfo('stage2')">Mere info</button></td>
+                </tr>
+                <tr id="stage2" class="hidden-row">
+                    <td colspan="4">
+                        <div class="info-content">
+                            <p>TODO</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Stage 3</td>
+                    <td>Kontakt os for tilbud</td>
+                    <td><a href="book.html?tuning=stage2plus" class="book-button">Book</a></td>
+                    <td><button class="info-button" onclick="toggleInfo('stage3')">Mere info</button></td>
+                </tr>
+                <tr id="stage3" class="hidden-row">
+                    <td colspan="4">
+                        <div class="info-content">
+                            <p>TODO</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Nedenstående sammen med tuning</b></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>DPF & EGR</td>
+                    <td>495.00 kr.</td>
+                    <td><a href="book.html?tuning=stage2plus" class="book-button">Book</a></td>
+                    <td><button class="info-button" onclick="toggleInfo('dpf')">Mere info</button></td>
+                </tr>
+                <tr id="dpf" class="hidden-row">
+                    <td colspan="4">
+                        <div class="info-content">
+                            <p>TODO</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Pop & Bang</td>
+                    <td>495.00 kr.</td>
+                    <td><a href="book.html?tuning=stage2plus" class="book-button">Book</a></td>
+                    <td><button class="info-button" onclick="toggleInfo('pop')">Mere info</button></td>
+                </tr>
+                <tr id="pop" class="hidden-row">
+                    <td colspan="4">
+                        <div class="info-content">
+                            <p>TODO</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>De-aktivering af motor lampe</td>
+                    <td>495,00 kr.</td>
+                    <td><a href="book.html?tuning=lamp" class="book-button">Book</a></td>
+                    <td><button class="info-button" onclick="toggleInfo('motorlampe')">Mere info</button></td>
+                </tr>
+                <tr id="motorlampe" class="hidden-row">
+                    <td colspan="4">
+                        <div class="info-content">
+                            <p>TODO</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Nedenstående uden tuning</b></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>DPF & EGR</td>
+                    <td>1245.00 kr.</td>
+                    <td><a href="book.html?tuning=stage2plus" class="book-button">Book</a></td>
+                    <td><button class="info-button" onclick="toggleInfo('dpf2')">Mere info</button></td>
+                </tr>
+                <tr id="dpf2" class="hidden-row">
+                    <td colspan="4">
+                        <div class="info-content">
+                            <p>TODO</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Pop & Bang</td>
+                    <td>1245.00 kr.</td>
+                    <td><a href="book.html?tuning=stage2plus" class="book-button">Book</a></td>
+                    <td><button class="info-button" onclick="toggleInfo('pop2')">Mere info</button></td>
+                </tr>
+                <tr id="pop2" class="hidden-row">
+                    <td colspan="4">
+                        <div class="info-content">
+                            <p>TODO</p>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>De-aktivering af motor lampe</td>
+                    <td>1245,00 kr.</td>
+                    <td><a href="book.html?tuning=lamp" class="book-button">Book</a></td>
+                    <td><button class="info-button" onclick="toggleInfo('motorlampe2')">Mere info</button></td>
+                </tr>
+                <tr id="motorlampe2" class="hidden-row">
+                    <td colspan="4">
+                        <div class="info-content">
+                            <p>TODO</p>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
