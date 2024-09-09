@@ -7,6 +7,9 @@ body {
     position: relative;
 }
 
+button {
+    border: none;
+}
 .container {
     background-color: rgb(245, 245, 245);
     max-width: 80%;
@@ -90,6 +93,60 @@ form textarea:focus {
     background-color: #45a049;
 }
 
+.cart-counter {
+    color:red;
+}
+
+.cart-table {
+    width: 100%;
+    max-width: 700px;
+    margin: 20px auto; /* Centers the table and adds spacing */
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.cart-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd; /* Adds a bottom border */
+}
+
+.cart-table tr:hover {
+    background-color: #f9f9f9; /* Light hover effect */
+}
+
+.cart-table td:last-child {
+    text-align: right; /* Aligns the total to the right */
+}
+
+.cart-table .no-tuning {
+    font-weight: bold;
+    background-color: #e0f7fa; /* Light blue background for distinction */
+}
+
+.cart-table .tuning {
+    background-color: #f1f8e9; /* Light green background for distinction */
+}
+
+.cart-total {
+    margin-top: 20px;
+    font-weight: bold;
+    text-align: right;
+}
+
+.clear-cart-button {
+    background-color: #f44336; /* Red color for clear button */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.clear-cart-button:hover {
+    background-color: #d32f2f; /* Darker red on hover */
+}
+
 .price-table {
     width: 100%;
     max-width: 700px;
@@ -123,6 +180,20 @@ form textarea:focus {
 
 .book-button:hover {
     background-color: #45a049;
+}
+
+.remove-button {
+    background-color: #af3737;
+    color: white;
+    padding: 5px 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.remove-button:hover {
+    background-color: #ac2828;
 }
 
 .info-button {

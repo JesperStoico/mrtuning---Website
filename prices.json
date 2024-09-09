@@ -1,0 +1,69 @@
+{
+    "prices": [
+        {
+            "name": "Øko tuning",
+            "price": 1495.00,
+            "info": "Øko tuning fokuserer på brændstoføkonomi og optimering af motoreffektivitet for at reducere forbruget."
+        },
+        {
+            "name": "Stage 1",
+            "price": 1495.00,
+            "info": "TODO"
+        },
+        {
+            "name": "Stage 1+",
+            "price": 1995.00,
+            "info": "TODO"
+        },
+        {
+            "name": "Stage 2",
+            "price": 0.00,
+            "info": "TODO"
+        },
+        {
+            "name": "Stage 3",
+            "price": 0.00,
+            "info": "TODO"
+        },
+        {
+            "name": "DPF & EGR",
+            "price": 495.00,
+            "info": "TODO",
+            "withTuning": true
+        },
+        {
+            "name": "Pop & Bang",
+            "price": 495.00,
+            "info": "TODO",
+            "withTuning": true
+        },
+        {
+            "name": "De-aktivering af motor lampe",
+            "price": 495.00,
+            "info": "TODO",
+            "withTuning": true
+        },
+        {
+            "name": "Nedenstående uden tuning",
+            "isHeader": true
+        },
+        {
+            "name": "DPF & EGR",
+            "price": 1245.00,
+            "info": "TODO",
+            "withTuning": false
+        },
+        {
+            "name": "Pop & Bang",
+            "price": 1245.00,
+            "info": "TODO",
+            "withTuning": false
+        },
+        {
+            "name": "De-aktivering af motor lampe",
+            "price": 1245.00,
+            "info": "TODO",
+            "withTuning": false
+        }
+    ]
+}

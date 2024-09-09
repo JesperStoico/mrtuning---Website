@@ -4,13 +4,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mail = htmlspecialchars($_POST['mail']);
     $phone = htmlspecialchars($_POST['phone']);
     $car = htmlspecialchars($_POST['car']);
-    $tuning = htmlspecialchars($_POST['tuning']);
     $comments = htmlspecialchars($_POST['comments']);
+    $cartData = json_decode($_POST['cart-data'], true); // Decode JSON cart data
 
-    if (!empty($name) && !empty($phone) && !empty($car) && !empty($tuning) && !empty($mail)) {
+    if (!empty($name) && !empty($phone) && !empty($car) && !empty($mail)) {
         $to = "jesper@stoico.dk"; // Replace with your email address
-        $subject = "New Car Tuning Booking";
-        $message = "Name: $name\n Email:$mail \nPhone: $phone\nCar Model: $car\nTuning: $tuning\nComments: $comments";
+        $subject = "Bestilling via mrtuning.dk";
+
+        // Format cart data
+        $cartMessage = "Products:\n";
+        foreach ($cartData as $item) {
+            $extraInfo = $item['withTuning'] ? "" : " + (uden tuning.)";
+            $cartMessage .= "- {$item['name']}{$extraInfo}: {$item['quantity']} x {$item['price']} kr.\n";
+        }
+
+        // Construct the email message
+        $message = "Name: $name\nEmail: $mail\nPhone: $phone\nCar Model: $car\n\n$cartMessage\nComments: $comments";
         $headers = "From: no-reply@mrtuning.dk";
 
         // Send email

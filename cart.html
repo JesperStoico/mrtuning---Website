@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="menu.css">
+    <title>MR Tuning</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="scripts/script.js" defer></script>
+    <script src="scripts/cart.js" defer></script>
+    <script src="scripts/mail_script.js" defer></script>
+    <script src="https://tuning-shop.com/media/js/iframe-loader.js"></script>    
+</head>
+<body>
+    <div id="menu-container"></div>
+    <div class="container">
+        <div class="section">
+            <h2>Bestilling</h2>
+            <div id="form-message">
+                <form class="booking-form" id="booking-form" action="send_booking.php" method="POST">
+                    <div>
+                        <label for="name">Navn:</label>
+                        <input type="text" id="name" name="name" placeholder="Dit navn" required>
+                        
+                        <label for="mail">Email:</label>
+                        <input type="text" id="mail" name="mail" placeholder="Din Email" required>
+        
+                        <label for="phone">Telefonnummer:</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Dit telefonnummer" required>
+        
+                        <label for="car">Bilmodel:</label>
+                        <input type="text" id="car" name="car" placeholder="Bilens mærke og model" required>
+                        
+                        <table class="cart-table" id="cart-table">
+                            <!-- JavaScript will populate this table -->
+                        </table>
+                        <div class="cart-total" id="cart-total">
+                            <!-- JavaScript will populate this total -->
+                        </div>
+        
+                        <label for="comments">Evt. extra kommentar til tuningen:</label>
+                        <textarea id="comments" name="comments" placeholder="Yderligere information"></textarea>
+                        <input type="hidden" id="cart-data" name="cart-data">
+                        <button type="submit">Bestil</button>
+                    </div>
+                </form>
+        </div>
+        <div class="section">
+            <button class="clear-cart-button" onclick="clearCart()">Reset kurv</button>
+        </div>
+    </div>  
+</body>
+</html>
