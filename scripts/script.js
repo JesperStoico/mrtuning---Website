@@ -76,6 +76,8 @@ function addToCart(name, price, withTuning) {
 // Function to update the cart display and count in the menu
 function updateCart() {
     const cartCount = document.getElementById('cart-count');
+    // If we are on the price page, this will update the button as well.
+    const cartButton = document.getElementById('go-to-cart-button');
 
     if (cartCount) {
         let totalItems = 0;
@@ -85,6 +87,9 @@ function updateCart() {
         });
 
         cartCount.textContent = totalItems;
+        if (cartButton) {
+            cartButton.textContent = `Gå til kurv (${totalItems})`;
+        }
     } else {
         console.warn('Cart count element not found.');
     }
@@ -170,3 +175,13 @@ document.addEventListener('click', (event) => {
         removeFromCart(index);
     }
 });
+
+// Function to toggle the hidden row
+function toggleInfo(rowId) {
+    const infoRow = document.getElementById(rowId);
+    if (infoRow.style.display === "table-row") {
+        infoRow.style.display = "none";
+    } else {
+        infoRow.style.display = "table-row";
+    }
+}

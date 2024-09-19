@@ -53,12 +53,12 @@
 }
 
 .image-container img:hover {
-    transform: scale(1.05); /* Scale the image */
+    transform: scale(1.1); /* Scale the image */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Change shadow on hover */
-    border: 1px solid red; /* Optional: Add border on hover */
 }
 
 .section-frontpage {
+    color:black;
     width: 80%; /* Set the width to 60% */
     margin: 0 auto; /* Center the section horizontally */
     margin-bottom: 10px;
@@ -77,3 +77,10 @@
     border: 0; /* Remove default iframe border */
 }
 
+.container-frontpage {
+    max-width: 80%;
+    margin: 500px auto;
+    padding: 20px;
+    position: relative; /* Ensure it stacks below the menu */
+    z-index: 1; /* Ensure the container is below the menu */
+}

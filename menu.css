@@ -1,7 +1,34 @@
-/* Style for screens larger than 768px (default behavior) */
+/* For screens larger than 768px */
 @media screen and (min-width: 768px) {
+    .menu {
+        display: flex;
+        justify-content: space-between; /* Space between the name and the menu items */
+        align-items: center;
+        padding: 10px 20px; /* Add some padding */
+        background-color: black;
+        position: fixed;
+        z-index: 1000;
+    }
+
+    .menu-left {
+        text-align: left; /* Align the firm name to the left */
+    }
+
+    .name {
+        font-size: 1.5em;
+        color: white;
+        font-weight: bold;
+        margin-left: 20px;
+    }
+
     .menu ul {
         text-align: right;
+        margin: 0;
+    }
+
+    .menu ul li {
+        display: inline;
+        margin-right: 20px;
     }
 
     .menu .hamburger {
@@ -17,6 +44,13 @@
     .menu {
         text-align: left;
         padding: 20px;
+        background-color: black;
+        position: fixed;
+        z-index: 1000;
+    }
+
+    .menu-left {
+        display: none; /* Hide the firm name on mobile */
     }
 
     .menu ul {
@@ -39,7 +73,7 @@
         font-size: 1.2em;
     }
 
-    /* Add a button for mobile to show the menu */
+    /* Hamburger button for mobile */
     .menu .hamburger {
         display: block;
         cursor: pointer;
@@ -52,18 +86,16 @@
     }
 }
 
-/* Styling for the header and menu */
-.menu {    
-    background-color: white; /* Very dark red */
-    color: black;
-    padding: 10px 0px 10px 0px;
-    text-align: right;
+/* Additional styling */
+.menu {
+    color: white;
+    background-color: black;
+    padding: 10px 0px;
     width: 100%;
     position: fixed;
     top: 0;
     left: 0;
-    
-    z-index: 1000; /* Ensures the menu is above other content */
+    z-index: 1000; /* Ensure the menu is above other content */
 }
 
 .menu ul {
@@ -71,35 +103,38 @@
     margin: 0;
     padding: 0;
 }
-.menu ul li {
-    display: inline;
-    margin-right: 20px;
-}
+
 .menu ul li a {
-    color: black;
+    color: white;
     text-decoration: none;
     font-size: 1em;
 }
+
 .menu ul li a:hover {
     text-decoration: none;
-    color:red;
+    color: red;
 }
 
 nav {
     position: fixed; /* Fix the nav to the top */
     top: 0;
     right: 0;
-    width: 100%; /* Adjust width as needed */
+    width: 100%;
 }
 
-.logo {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
+.cart-icon {
+    height: 18px;
+    margin: 0 0 0 0;
 }
 
-.logo img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 2px;
+.cart-counter {
+    bottom: 2px;
+    background-color: red; /* Red background for visibility */
+    color: white; /* White text color */
+    font-size: 12px; /* Adjust font size */
+    padding: 6px 9px; /* Padding around the counter */
+    border-radius: 50%; /* Make the counter circular */
+    min-width: 18px; /* Minimum width to ensure it stays circular even with single digits */
+    text-align: center; /* Center the number inside the circle */
+    font-weight: bold; /* Make the text bold */
 }

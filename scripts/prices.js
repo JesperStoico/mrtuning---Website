@@ -1,10 +1,20 @@
 // Function to generate the price table
 function generatePriceTable(prices) {
     const priceTable = document.getElementById('price-table');
+    const headlines = document.createElement('tr');
+    headlines.classList.add('no-hover');
+    headlines.innerHTML = `
+        <th><b>Service</b></th>
+        <th><b>Pris</b></th>
+        <th><b>Bestil</b></th>
+        <th><b>Mere info</b></th>
+    `;
+    priceTable.appendChild(headlines);
     prices.forEach((item, index) => {
         if (item.isHeader) {
             // Create and append header row
             const headerRow = document.createElement('tr');
+            headerRow.classList.add('no-hover');
             headerRow.innerHTML = `
                 <td><b>${item.name}</b></td>
                 <td></td>
@@ -18,7 +28,7 @@ function generatePriceTable(prices) {
             row.innerHTML = `
                 <td>${item.name}</td>
                 <td>${item.price ? item.price.toFixed(2) + ' kr.' : 'Kontakt os for tilbud'}</td>
-                <td><button class="book-button add-to-cart-button" data-name="${item.name}" data-price="${item.price}" with-tuning="${item.withTuning}">Book</button></td>
+                <td><button class="book-button add-to-cart-button" data-name="${item.name}" data-price="${item.price}" with-tuning="${item.withTuning}">Tilføj til kurv</button></td>
                 <td><button class="info-button" onclick="toggleInfo('info-${index}')">Mere info</button></td>
             `;
 

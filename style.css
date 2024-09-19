@@ -1,21 +1,47 @@
 body {
     font-family: 'Rubik', 'Arial', sans-serif;
-    background-color: white;
     color:  black;
     margin: 0;
-    padding: 20px;
+    padding: 20px;    
+    background-image: url('images/back_logo2.png'); /* Replace with the path to your image */
+    background-size: contain; /* Ensure the image fits the width of the page */
+    background-position: top center; /* Position the image at the top center */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-attachment: scroll; /* Make the background scroll with the content */
+    position: relative; /* Required for pseudo-element positioning */
+    min-height: 100vh; /* Ensure the body covers the full viewport height */
+}
+
+/* Ensure that the content stays on top */
+body * {
     position: relative;
+    z-index: 1; /* Place content above the overlay */
 }
 
 button {
     border: none;
 }
+
 .container {
-    background-color: rgb(245, 245, 245);
     max-width: 80%;
-    margin: 0 auto;
+    margin: 100px auto 0;
     padding: 20px;
     border-radius: 10px;
+    position: relative; /* Ensure it stacks below the menu */
+    z-index: 1; /* Ensure the container is below the menu */
+}
+
+/* White dimming effect */
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.5); /* White overlay with 50% opacity */
+    z-index: -1; /* Make sure the overlay is behind the content */
 }
 
 .contact_logos {
@@ -93,10 +119,6 @@ form textarea:focus {
     background-color: #45a049;
 }
 
-.cart-counter {
-    color:red;
-}
-
 .cart-table {
     width: 100%;
     max-width: 700px;
@@ -111,7 +133,7 @@ form textarea:focus {
 }
 
 .cart-table tr:hover {
-    background-color: #f9f9f9; /* Light hover effect */
+    background-color: #6e6d6d; /* Light hover effect */
 }
 
 .cart-table td:last-child {
@@ -120,11 +142,11 @@ form textarea:focus {
 
 .cart-table .no-tuning {
     font-weight: bold;
-    background-color: #e0f7fa; /* Light blue background for distinction */
+    background-color: #6e6d6d; /* Light blue background for distinction */
 }
 
 .cart-table .tuning {
-    background-color: #f1f8e9; /* Light green background for distinction */
+    background-color: #6e6d6d; /* Light green background for distinction */
 }
 
 .cart-total {
@@ -147,6 +169,21 @@ form textarea:focus {
     background-color: #d32f2f; /* Darker red on hover */
 }
 
+.go-to-cart-button {
+    background-color: #d32f2f;
+    color: white;
+    padding: 10px 60px 10px 60px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+.go-to-cart-button:hover {
+    background-color: #45a049;    
+    cursor: pointer;
+}
+
 .price-table {
     width: 100%;
     max-width: 700px;
@@ -155,17 +192,22 @@ form textarea:focus {
     text-align: left;    
 }
 
-.price-table td {
+.price-table td .price-table th{
     padding: 10px;
     border-bottom: 1px solid #ddd; /* Adds a bottom border */
 }
 
 .price-table tr:hover {
-    background-color: white; /* Adds hover effect */
+    background-color: #6e6d6d; /* Adds hover effect */
 }
 
 .price-table td:last-child {
     text-align: right; /* Aligns the price to the right */
+}
+
+.price-table .no-hover:hover {
+    background-color: transparent;
+    cursor: default;
 }
 
 .book-button {
@@ -180,6 +222,7 @@ form textarea:focus {
 
 .book-button:hover {
     background-color: #45a049;
+    cursor: pointer;
 }
 
 .remove-button {
@@ -194,6 +237,7 @@ form textarea:focus {
 
 .remove-button:hover {
     background-color: #ac2828;
+    cursor: pointer;
 }
 
 .info-button {
@@ -209,6 +253,7 @@ form textarea:focus {
 
 .info-button:hover {
     background-color: #45a049;
+    cursor: pointer;
 }
 
 .info-content {
@@ -312,6 +357,8 @@ h3 {
 .section {
     margin: 0px 40px 0px 40px;
     text-align: left;
+    position: relative; /* Ensure sections stack properly */
+    z-index: 1; /* Ensure sections are below the menu */
 }
 .section:last-child {
     margin-bottom: 0;
