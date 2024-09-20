@@ -1,21 +1,27 @@
 body {
     font-family: 'Rubik', 'Arial', sans-serif;
-    color:  black;
+    color: black;
     margin: 0;
     padding: 20px;    
-    background-image: url('images/back_logo2.png'); /* Replace with the path to your image */
     background-size: contain; /* Ensure the image fits the width of the page */
     background-position: top center; /* Position the image at the top center */
     background-repeat: no-repeat; /* Prevent the image from repeating */
     background-attachment: scroll; /* Make the background scroll with the content */
     position: relative; /* Required for pseudo-element positioning */
     min-height: 100vh; /* Ensure the body covers the full viewport height */
-}
+    animation: changeBackground 60s ease-in-out infinite; /* Adjust duration and steps */
+  }
 
 /* Ensure that the content stays on top */
 body * {
     position: relative;
     z-index: 1; /* Place content above the overlay */
+}
+
+@keyframes changeBackground {
+    0% { background-image: url('images/back_logo2.png'); }
+    50% { background-image: url('images/back_logo1.png'); }
+    100% { background-image: url('images/back_logo2.png'); }
 }
 
 button {
